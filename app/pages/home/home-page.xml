@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar>
+        <GridLayout columns="auto, *, auto">
+            <Image src="~/images/logo.png" width="40" height="40" class="m-2" col="0"/>
+            <Label text="FC Imperial" class="text-xl font-bold" col="1"/>
+            <Label text="&#xf0c9;" class="fas text-2xl p-4" tap="onMenu" col="2"/>
+        </GridLayout>
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <!-- Header Section -->
+        <StackLayout row="0" class="p-4 bg-blue-900">
+            <Label text="Welcome to FC Imperial" class="text-2xl text-white font-bold text-center"/>
+            <Label text="Home of Champions" class="text-lg text-white text-center"/>
+        </StackLayout>
+
+        <!-- Main Content -->
+        <ScrollView row="1">
+            <StackLayout class="p-4">
+                <!-- Quick Links -->
+                <GridLayout columns="*, *" rows="auto, auto, auto" class="gap-4">
+                    <StackLayout tap="navigateToTeam" class="bg-white p-4 rounded-lg shadow" row="0" col="0">
+                        <Label text="&#xf0c0;" class="fas text-3xl text-blue-600 text-center"/>
+                        <Label text="Team" class="text-center font-bold"/>
+                    </StackLayout>
+
+                    <StackLayout tap="navigateToNews" class="bg-white p-4 rounded-lg shadow" row="0" col="1">
+                        <Label text="&#xf1ea;" class="fas text-3xl text-blue-600 text-center"/>
+                        <Label text="News" class="text-center font-bold"/>
+                    </StackLayout>
+
+                    <StackLayout tap="navigateToGallery" class="bg-white p-4 rounded-lg shadow" row="1" col="0">
+                        <Label text="&#xf03e;" class="fas text-3xl text-blue-600 text-center"/>
+                        <Label text="Gallery" class="text-center font-bold"/>
+                    </StackLayout>
+
+                    <StackLayout tap="navigateToFixtures" class="bg-white p-4 rounded-lg shadow" row="1" col="1">
+                        <Label text="&#xf073;" class="fas text-3xl text-blue-600 text-center"/>
+                        <Label text="Fixtures" class="text-center font-bold"/>
+                    </StackLayout>
+
+                    <StackLayout tap="navigateToManagement" class="bg-white p-4 rounded-lg shadow" row="2" col="0">
+                        <Label text="&#xf0b1;" class="fas text-3xl text-blue-600 text-center"/>
+                        <Label text="Management" class="text-center font-bold"/>
+                    </StackLayout>
+
+                    <StackLayout tap="navigateToContact" class="bg-white p-4 rounded-lg shadow" row="2" col="1">
+                        <Label text="&#xf095;" class="fas text-3xl text-blue-600 text-center"/>
+                        <Label text="Contact" class="text-center font-bold"/>
+                    </StackLayout>
+                </GridLayout>
+
+                <!-- Latest News Preview -->
+                <StackLayout class="mt-4">
+                    <Label text="Latest News" class="text-xl font-bold mb-2"/>
+                    <ListView items="{{ latestNews }}" class="list-group" height="200">
+                        <ListView.itemTemplate>
+                            <StackLayout class="list-group-item">
+                                <Label text="{{ title }}" class="font-bold"/>
+                                <Label text="{{ preview }}" textWrap="true" class="text-gray-600"/>
+                            </StackLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+                </StackLayout>
+
+                <!-- Next Match Preview -->
+                <StackLayout class="mt-4 bg-white p-4 rounded-lg shadow">
+                    <Label text="Next Match" class="text-xl font-bold mb-2"/>
+                    <GridLayout columns="*, auto, *" class="text-center">
+                        <Label text="{{ nextMatch.homeTeam }}" col="0" class="font-bold"/>
+                        <Label text="VS" col="1" class="mx-2"/>
+                        <Label text="{{ nextMatch.awayTeam }}" col="2" class="font-bold"/>
+                    </GridLayout>
+                    <Label text="{{ nextMatch.date }}" class="text-center text-gray-600"/>
+                    <Label text="{{ nextMatch.time }}" class="text-center text-gray-600"/>
+                    <Label text="{{ nextMatch.venue }}" class="text-center text-gray-600"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+</Page>
